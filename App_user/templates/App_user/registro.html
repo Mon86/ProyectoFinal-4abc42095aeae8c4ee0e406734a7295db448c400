@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="{% static 'App_user/css/estilazo.css'%}" rel="stylesheet"/>
+    <link href="{% static 'App_user/css/bootstrap.min.css'%}" rel="stylesheet"/>
+    <title>Registro Facturance</title>
+</head>
+<body>
+    {% if messages %}
+    <div class="container mt-4">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="containerForm"> 
+        <form action="{% url 'registro' %}" method="POST" class="formLogin">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button class="btn btn-primary" type="submit">Registrar</button>
+        </div>
+        <p style="color: white;">¿Ya tienes una cuenta? <a href="../">Iniciar sesión</a></p>
+        </form>
+
+    </div>
+</body>
+</html>

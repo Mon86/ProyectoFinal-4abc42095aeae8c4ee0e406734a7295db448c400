@@ -1,0 +1,21 @@
+{% extends 'App_user/base.html' %}
+{% load static %}
+
+{% block metamorphosis %}
+  <div>
+      <ul>
+          <li>Nombre de usuario : {{user.username}}</li>
+          <li>Email : {{user.email}}</li>
+          <li>Nombre propio : {{user.first_name}}</li>
+          <li>Nombre del Negocio : {{user.last_name}}</li>
+          <br>
+          <li>Avatar: <img src="{{user.avatar.image.url}}" alt="" width="150px" height="auto"></li>
+          <br>
+          <li>Descripcion del Negocio: {{user.avatar.description}} </li>
+      </ul>
+      <a href="/editarPerfil" class="btn btn-success" style="text-decoration: none; color: antiquewhite;">Editar perfil personal</a>
+      <a href="/editarContraseña" type="button" class="btn btn-success">Cambiar contraseña</a>
+  </div> <br> <a href="/editarAvatar" type="button" class="btn btn-success">Editar perfil de empresa</a></div>
+  </div>
+
+{% endblock %}

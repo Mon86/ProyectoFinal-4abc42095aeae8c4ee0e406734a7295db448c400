@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'App_user/css/bootstrap.min.css'%}" rel="stylesheet"/>
+    <link href="{% static 'App_user/css/estilazo.css'%}" rel="stylesheet"/>
+    <script src="{% static 'App_user/js/bootstrap.min.js'%}"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <title>Inicio|App_user</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Facturance</a>
+            {% if user.username %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/home">Mi Perfil 
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <img src="{{user.avatar.image.url}}" width="30px" height="" alt="Avatar">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/productos">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ventas">Ventas</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Mi Pagina Web</a>
+                        <div class="dropdown-menu">
+                            
+                            <a class="dropdown-item" href="{% url 'vistaClientes' user.id %}">Vista clientes</a>
+                            <div class="dropdown-divider"></div>
+                             <a class="dropdown-item" href="{%  url 'crearPosteo' user.id %}">Hacer un posteo</a>
+                            <!-- Este es un comentario de ejemplo <a class="dropdown-item" href="#">Editar productos visibles</a>-->
+            
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav-link active">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>  
+                {% else %}
+                <ul class="nav-link active">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                </ul>            
+            {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    {% if messages %}
+        <div class="container mt-4">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="home">
+        {% block metamorphosis %}
+        {% endblock %}
+    </div>
+
+    <footer class="bg-dark py-5">
+        <section class="page-section" id="contact">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6 text-center">
+                        <h4 class="mt-0">Facturance V 1.0 </h4>
+                        <hr class="divider" />
+                        <p class="text-muted mb-5">Sistema de Facturacion y control de stock hecho en Django</p>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+                    <div class="col-lg-4 text-center mb-5 mb-lg-0">
+                        <i class="bi-phone fs-2 mb-3 text-muted"></i>
+                        <div>+54 9 2213182613</div>
+                        <div>Juan Palazzo</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container px-4 px-lg-5">
+            <div class="small text-center text-muted">Copyright &copy; 2023 - Juan Palazzo</div>
+        </div>
+    </footer>
+</body>
+</html>

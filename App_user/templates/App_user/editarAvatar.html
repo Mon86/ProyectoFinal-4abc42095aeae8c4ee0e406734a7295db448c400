@@ -1,0 +1,25 @@
+{% extends 'App_user/base.html' %}
+{% load static %}
+
+{% block metamorphosis %}
+    <h3>Editar Perfil del negocio</h3>
+    <h4>{{ user.last_name }}</h4>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.avatar.label_tag }}
+        {{ form.avatar }}
+        <br>
+        <br>
+        <br>
+        {{ form2.description.label_tag }}<br>  
+        {{ form2.description }}
+        <br><br>
+        
+        {% if has_image %}
+            <img src="{{user.avatar.image.url}}" alt="Avatar">
+        {% endif %}
+
+        <input type="submit" value="Confirmar edición" class="btn btn-success">
+    </form>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'App_user/base.html' %}
+{% load static %}
+
+{% block metamorphosis %}
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            border-right: 1px solid #ddd;
+        }
+    </style>
+
+    <p style="font-size: 24px; font-weight: bold;">Crear producto</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form.as_p }}
+        </table>
+        <input type="submit" value="Enviar">    
+    </form>
+    
+    <br><br> 
+    <h2>Productos Creados</h2>
+    {% if productos %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Codigo de barras</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Fecha de creación</th>
+                    <th>Imagen del producto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                    <tr>
+                        <td>{{ producto.bars_code }}</td>
+                        <td>{{ producto.nombre_producto }}</td>
+                        <td>{{ producto.descripcion_producto }}</td>
+                        <td>{{ producto.stock_producto }}</td>
+                        <td>{{ producto.precio_producto }}</td>
+                        <td>{{ producto.created_at }}</td>
+                        <td>
+                            {% if producto.imagen_producto %}
+                                <img src="{{ producto.imagen_producto.url }}" alt="" style="max-width: 100px; max-height: 100px">
+                            {% else %}
+                                <p>No hay imagen asociada</p>
+                            {% endif %}  
+                        </td>
+                        <td>
+                            <a href="{% url 'editarProducto' producto.id %}" class="btn-editar">Editar Producto</a>
+                            <br>
+                            <form action="{% url 'borrarProducto' producto.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-eliminar">Eliminar</button>
+                            </form>
+                        </td>                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No se han creado productos.</p>
+    {% endif %}
+{% endblock %}

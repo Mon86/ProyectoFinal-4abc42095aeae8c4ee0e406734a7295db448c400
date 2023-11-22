@@ -1,0 +1,16 @@
+{% extends 'App_user/base.html' %}
+{% load static %}
+
+{% block metamorphosis %}
+<div class="container mt-4">
+  <div class="post-box">
+    <h2>Crear Posteo</h2>
+    <h5>Aqui puedes postear cosas que luego veran tus clientes en "Tu pagina web"</h5>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ posteoform.as_p }}
+      <button type="submit">Publicar</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

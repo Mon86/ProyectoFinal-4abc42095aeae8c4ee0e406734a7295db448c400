@@ -1,0 +1,18 @@
+{% extends 'App_user/base.html' %}
+{% load static %}
+
+{% block metamorphosis %}
+
+    <div class="container">
+        <h6>Username: {{ user.username }}</h6>
+
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+
+            <input type="submit" value="Confirmar cambio de contraseña" class="btn btn-success">
+        </form>
+    </div>
+{% endblock %}

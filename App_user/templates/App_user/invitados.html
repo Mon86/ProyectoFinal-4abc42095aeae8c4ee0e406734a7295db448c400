@@ -1,0 +1,58 @@
+{% extends 'App_user/base.html' %}
+{% load static %}
+
+{% block metamorphosis %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+        border-right: 1px solid #ddd;
+    }
+</style>
+  <table>
+
+    <thead>
+
+        <tr>
+            <th scope= "col"> Nombre de empresa</th>
+            <th scope= "col"> Descripcion</th>
+            <th scope= "col"> Imagen del negocio</th>
+            <th scope= "col"> Link</th>
+        </tr>
+
+        <tbody>
+            {% for user in users %}
+
+                <tr>
+                    <th>{{user.last_name}}</th>
+                    <th>{{user.avatar.description}}</th>
+                    <th><img src="{{user.avatar.image.url}}" alt="" width="150px"></th>
+                    <td><a href="{% url 'vistaClientes' user.id %}"> Link </a></td>
+                </tr>
+            {% endfor %}
+
+
+
+
+
+
+        </tbody>
+
+
+
+
+
+
+    </thead>
+
+  </table>
+{% endblock %}

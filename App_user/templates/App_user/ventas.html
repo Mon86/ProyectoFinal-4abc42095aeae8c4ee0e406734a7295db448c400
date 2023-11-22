@@ -1,0 +1,18 @@
+{% extends 'App_user/base.html' %}
+{% load static %}
+
+{% block metamorphosis %}
+  <h1>Crear Venta</h1>
+  <form method="POST">
+    {% csrf_token %}
+    
+    {{ form.producto.label_tag }}
+    {{ form.producto }}
+    {{ form.cantidad.label_tag }}
+    {{ form.cantidad }}
+    <p>Valor total: {{ form.instance.valor_total }}</p> 
+    
+    <input type="submit" value="Vender">
+  </form>
+  
+{% endblock %}

@@ -1,0 +1,50 @@
+.containerForm{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: absolute !important;
+    height: 100% !important;
+    width: 100% !important;
+    background-image: url("../assets/img/FondoLogin.jpg");
+}
+
+.formLogin{
+    font-weight: bold;
+    background: linear-gradient(45deg, rgb(4, 5, 31) 0%, rgb(64, 31, 184) 100%);
+    padding: 40px 20px 20px 20px;
+    border-radius: 5px;
+    width: auto;
+    height: auto;
+
+}
+.formLogin div{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputLogin{
+    border-radius: 5px;
+    border: 1px solid rebeccapurple;
+    width: 90%;
+}
+
+.alert-error{
+    background-color: #e74c3c !important; 
+}
+
+.btn-editar, .btn-eliminar {
+    background-color: #44a341;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.btn-editar:hover, .btn-eliminar:hover {
+    background-color: #FF5555;
+}
